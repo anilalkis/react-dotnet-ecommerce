@@ -1,4 +1,5 @@
 using API.Data;
+using API.Middlewares;
 using API.Services.ProductServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -23,6 +24,8 @@ builder.Services.AddDbContext<DataContext>(options => {
 builder.Services.AddScoped<IProductService,ProductService>();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandling>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
