@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { IProduct } from "../../model/IProduct";
 import { Divider, Grid2, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
+import requests from "../../api/requests";
 
 export default function ProductDetails()
 {
@@ -10,8 +11,7 @@ export default function ProductDetails()
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5194/api/products/${id}`)
-        .then(response => response.json())
+    id && requests.Catalog.details(parseInt(id))
         .then(data => setProduct(data))
         .catch(error => console.log(error))
         .finally(() => setLoading(false));
