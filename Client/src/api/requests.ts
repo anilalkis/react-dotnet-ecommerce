@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 
 axios.defaults.baseURL = "http://localhost:5194/api/";
+axios.defaults.withCredentials = true;
 
 const queries = {
     get: (url: string) => axios.get(url).then((response: AxiosResponse) => response.data), 
@@ -40,8 +41,14 @@ const Catalog = {
     details: (id: number) => queries.get(`products/${id}`)
 }
 
+const Cart = {
+    get: () => queries.get("Cart"),
+    addItem: (productId: number, quantity = 1) => queries.post(`cart?productId=${productId}&quantity=${quantity}`,{}),
+    deleteItem: (productId: number, quantity = 1) => queries.delete(`cart?productId=${productId}&quantity=${quantity}`),
+}
+
 const requests = {
-    Catalog
+    Catalog, Cart
 }
 
 export default requests

@@ -4,6 +4,7 @@ import HomePage from "../pages/HomePage";
 import AboutPgae from "../pages/AboutPage";
 import CatalogPage from "../pages/catalog/CatalogPage";
 import ProductDetails from "../pages/catalog/ProductDetails";
+import ShoppingCartPage from "../pages/cart/ShoppingCartPage";
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
             {path: "about", element: <AboutPgae/>},
             {path: "catalog", element: <CatalogPage/>},
             {path: "catalog/:id", element: <ProductDetails/>},
+            {path: "cart",element: <ShoppingCartPage/>}
         ]
     }
 ]);

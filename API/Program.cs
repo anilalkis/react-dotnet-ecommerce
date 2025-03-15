@@ -1,5 +1,6 @@
 using API.Data;
 using API.Middlewares;
+using API.Services.CartServices;
 using API.Services.ProductServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<DataContext>(options => {
 });
 
 builder.Services.AddScoped<IProductService,ProductService>();
+builder.Services.AddScoped<ICartService,CartService>();
 
 var app = builder.Build();
 
@@ -41,6 +43,7 @@ app.UseHttpsRedirection();
 app.UseCors(opt => {
     opt.AllowAnyHeader()
         .AllowAnyMethod()
+        .AllowCredentials()
         .WithOrigins("http://localhost:3000");
 });
 
